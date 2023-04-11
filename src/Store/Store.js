@@ -6,6 +6,9 @@ let Store = {
     { id: 2, name: 'Дом', status: '' },
     { id: 3, name: 'Работа', status: '' },
     { id: 4, name: '+', status: 'New-group' }
+  ],
+  ModalBlocks: [
+    {name: 'NewGroup-Box', status: '_hide'},
   ]
 }
 
@@ -17,6 +20,15 @@ export function GroupItemActiveChange(itemID) {
       Store.GroupList[i].status = 'New-group';
     }else{
       Store.GroupList[i].status = '';
+    }
+  }
+  MainRnder();
+}
+
+export function ModalBlockActiveChange(ModalBlockName, doStatus){
+  for (let i = 0; i < Store.ModalBlocks.length; i++) {
+    if (Store.ModalBlocks[i].name === ModalBlockName){
+      Store.ModalBlocks[i].status = doStatus;
     }
   }
   MainRnder();
