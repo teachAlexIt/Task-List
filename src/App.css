@@ -24,6 +24,10 @@
   padding: 0px 20px;
   align-items: center;
 }
+.Task-box__head::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}
 
 .Group-list__item {
   background: #4A4A4A;

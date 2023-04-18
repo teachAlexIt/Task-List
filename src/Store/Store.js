@@ -8,8 +8,8 @@ let Store = {
     { id: 4, name: '+', status: 'New-group' }
   ],
   ModalBlocks: [
-    {name: 'wrapper', status: '_hide'},
-    {name: 'NewGroup-Box', status: '_hide'},
+    { name: 'wrapper', status: '_hide' },
+    { name: 'NewGroup-Box', status: '_hide' },
   ]
 }
 
@@ -17,29 +17,47 @@ export function GroupItemActiveChange(itemID) {
   for (let i = 0; i < Store.GroupList.length; i++) {
     if (Store.GroupList[i].id.toString() === itemID) {
       Store.GroupList[i].status = 'Group-list__item_active';
-    }else if(Store.GroupList[i].status === 'New-group'){
+    } else if (Store.GroupList[i].status === 'New-group') {
       Store.GroupList[i].status = 'New-group';
-    }else{
+    } else {
       Store.GroupList[i].status = 'Group-list__item_NotActive';
     }
   }
   MainRnder();
 }
 
-export function ModalBlockActiveChange(ModalBlockName, doStatus){
+export function ModalBlockActiveChange(ModalBlockName, doStatus) {
   Store.ModalBlocks[0].status = doStatus;
-  if (doStatus === '_show'){
+  if (doStatus === '_show') {
     for (let i = 0; i < Store.ModalBlocks.length; i++) {
-      if (Store.ModalBlocks[i].name === ModalBlockName){
+      if (Store.ModalBlocks[i].name === ModalBlockName) {
         Store.ModalBlocks[i].status = doStatus;
       }
     }
-  }else{
+  } else {
     for (let i = 0; i < Store.ModalBlocks.length; i++) {
       Store.ModalBlocks[i].status = doStatus;
     }
   }
-  
   MainRnder();
+}
+
+export function AddGroupStore(nameGroup) {
+  let NewGroup = {
+    id: 0,
+    name: nameGroup,
+    status: 'Group-list__item_active'
+  };
+  Store.GroupList.splice(-1, 0, NewGroup)
+  changeID(Store.GroupList)
+}
+
+function changeID(array) {
+  for (let i = 0; i < array.length; i++) {
+    array[i].id = i;
+  }
+  GroupItemActiveChange((array.length - 2).toString());
+  ModalBlockActiveChange('', '_hide');
+
 }
 export default Store;

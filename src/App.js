@@ -14,7 +14,6 @@ function App() {
     if(e.target.classList.contains('wrapper')) {
       ModalBlockActiveChange('', '_hide');
     }
-    
   }
   return (
     <div className='App'>
@@ -36,3 +35,4 @@ function App() {
 }
 
 export default App;
+
