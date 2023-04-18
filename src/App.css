@@ -68,6 +68,20 @@
   color: #4A4A4A;
 }
 
+
+/* wrapper */
+
+.wrapper{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #4a4a4a6f;
+  transition: 0.4s;
+  z-index: 10;
+}
+
 .NewGroup-Box {
   position: fixed;
   top: 50%;
