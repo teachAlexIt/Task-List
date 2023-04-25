@@ -13,6 +13,9 @@
 
 .Task-box {
   width: 90%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .Task-box__head {
@@ -24,7 +27,8 @@
   padding: 0px 20px;
   align-items: center;
 }
-.Task-box__head::-webkit-scrollbar{
+
+.Task-box__head::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
@@ -72,10 +76,43 @@
   color: #4A4A4A;
 }
 
+/* Task-box__body */
+.Task-box__body {
+  flex-grow: 1;
+  overflow-y: auto;
+  border: 1px solid #4A4A4A;
+  border-top: 0;
+  border-bottom: 0;
+  position: relative;
+}
+
+/* Task-box__button_new-task */
+
+.Task-box__button_new-task{
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  line-height: 100%;
+  font-weight: 900;
+  position: absolute;
+  bottom: 5vh;
+  right: 5vh;
+  opacity: 0.5;
+  border-radius: 100%;
+  color: #4A4A4A;
+  background-color: #cbcbcb;
+  transition: 0.4s;
+}
+.Task-box__button_new-task:hover{
+  opacity: 1;
+}
 
 /* wrapper */
 
-.wrapper{
+.wrapper {
   position: fixed;
   top: 0;
   left: 0;
@@ -112,7 +149,7 @@
   text-align: center;
 }
 
-.NewGroup-Box form {
+.NewGroup-Box__form {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -121,27 +158,44 @@
   margin: auto;
 }
 
-.NewGroup-Box label {}
 
-.NewGroup-Box input {
+.NewGroup-Box__form input {
   border: 1px solid #4A4A4A;
   border-radius: 6px;
   padding: 16px 8px;
 }
 
-.NewGroup-Box form button {
+.NewGroup-Box__form button {
   padding: 16px;
   background-color: #4A4A4A;
   color: #F3F3F3;
   border-radius: 6px;
 }
 
+/*NewTask-Box */
+.NewTask-Box{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 1200px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 40px rgba(184, 184, 184, 0.22);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  padding: 30px 16px;
+  transition: 0.3s;
+}
+
+
 /*  */
 ._hide {
   visibility: hidden;
   opacity: 0;
 }
-._show{
+
+._show {
   visibility: visible;
   opacity: 1;
 }

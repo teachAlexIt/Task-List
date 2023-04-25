@@ -1,19 +1,24 @@
 import { MainRnder } from "../index";
 let Store = {
   GroupList: [
-    { id: 0, name: 'Все', status: 'Group-list__item_active' },
-    { id: 1, name: 'Собрание', status: 'Group-list__item_NotActive' },
-    { id: 2, name: 'Дом', status: 'Group-list__item_NotActive' },
-    { id: 3, name: 'Работа', status: 'Group-list__item_NotActive' },
-    { id: 4, name: '+', status: 'New-group' }
+    { id: '', name: 'Все', status: 'Group-list__item_active' },
+    { id: '', name: 'Важные', status: 'Group-list__item_NotActive' },
+    { id: '', name: 'Срочные', status: 'Group-list__item_NotActive' },
+    { id: '', name: 'Собрание', status: 'Group-list__item_NotActive' },
+    { id: '', name: 'Дом', status: 'Group-list__item_NotActive' },
+    { id: '', name: 'Работа', status: 'Group-list__item_NotActive' },
+    { id: '', name: '+', status: 'New-group' }
   ],
   ModalBlocks: [
     { name: 'wrapper', status: '_hide' },
     { name: 'NewGroup-Box', status: '_hide' },
+    { name: 'NewTask-Box', status: '_hide' },
   ]
 }
 
-export function GroupItemActiveChange(itemID) {
+changeID(Store.GroupList);
+
+export function GroupItemActiveChange(itemID) {//переклюсает активную гркапу
   for (let i = 0; i < Store.GroupList.length; i++) {
     if (Store.GroupList[i].id.toString() === itemID) {
       Store.GroupList[i].status = 'Group-list__item_active';
@@ -26,7 +31,7 @@ export function GroupItemActiveChange(itemID) {
   MainRnder();
 }
 
-export function ModalBlockActiveChange(ModalBlockName, doStatus) {
+export function ModalBlockActiveChange(ModalBlockName, doStatus) {//вкулючает или отеключает мпонадьные окна
   Store.ModalBlocks[0].status = doStatus;
   if (doStatus === '_show') {
     for (let i = 0; i < Store.ModalBlocks.length; i++) {
@@ -42,22 +47,27 @@ export function ModalBlockActiveChange(ModalBlockName, doStatus) {
   MainRnder();
 }
 
-export function AddGroupStore(nameGroup) {
+export function AddGroupStore(nameGroup) {//добавляет новую группу
   let NewGroup = {
     id: 0,
     name: nameGroup,
     status: 'Group-list__item_active'
   };
   Store.GroupList.splice(-1, 0, NewGroup)
-  changeID(Store.GroupList)
+  changeID(Store.GroupList);
+  NewGroupActive(Store.GroupList);
 }
 
-function changeID(array) {
+export function AddTaskStore(){
+  
+}
+function changeID(array) {// меняет Id
   for (let i = 0; i < array.length; i++) {
     array[i].id = i;
   }
+}
+function NewGroupActive(array){//делает новую группу аетивной
   GroupItemActiveChange((array.length - 2).toString());
   ModalBlockActiveChange('', '_hide');
-
 }
 export default Store;

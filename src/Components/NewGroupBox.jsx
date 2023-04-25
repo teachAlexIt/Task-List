@@ -35,11 +35,11 @@ function NewGroupBox(props) {
         X
       </button>
       <h2>Новая групп</h2>
-      <form action='#'>
+      <div className='NewGroup-Box__form'>
         <label>Имя Группы</label>
         <input onKeyDown={AddGroup} placeholder='Введите название' maxLength={14} />
         <button onClick={AddGroup} type='button'>Добавить</button>
-      </form>
+      </div>
     </div>
   );
 }
