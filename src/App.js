@@ -1,6 +1,7 @@
 import './App.css';
 import GroupListItem from './Components/GroupListItem';
 import NewGroupBox from './Components/NewGroupBox';
+import TaskItem from './Components/TaskItem';
 import NewTaskBox from './NewTaskBox';
 import Store, { ModalBlockActiveChange } from './Store/Store';
 
@@ -10,13 +11,23 @@ function App() {
       id={Item.id}
       key={Item.id}
       name={Item.name}
-      status={Item.status} />)
+      status={Item.status}
+      span={Item.span} />);
+  let Tasks = Store.Tasks.map((task) =>
+    <TaskItem
+      text={task.text}
+      deadline={task.deadline}
+      daysLeft={task.daysLeft}
+      group={task.group}
+
+      GroupListForSrlrct={Store.GroupList} />
+  )
   function wrapperClick(e) {
     if (e.target.classList.contains('wrapper')) {
       ModalBlockActiveChange('', '_hide');
     }
   }
-  function newTaskButtonCkick(){
+  function newTaskButtonCkick() {
     ModalBlockActiveChange('NewTask-Box', '_show')
   }
   return (
@@ -33,7 +44,7 @@ function App() {
         </div>
         <div className='Task-box__body'>
           <div className='Task-box__list Task-List'>
-            
+            {Tasks}
           </div>
           <button className='Task-box__button_new-task' onClick={newTaskButtonCkick}>+</button>
         </div>
