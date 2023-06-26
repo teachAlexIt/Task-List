@@ -49,7 +49,7 @@
   transition: 0.3s;
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
 }
 
 .Group-list__item_active {
